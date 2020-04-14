@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=DatabaseFood
+comment0.text=\r\n\ Kelas\ DatabaseFood\ merupakan\ bagian\ dari\ JFood\ yang\ menangani\ pusat\ data\ makanan.\r\n\ Class\ adalah\ \u201Cblueprint\u201D\ atau\ \u201Ccetakan\u201D\ untuk\ menciptakan\ suatu\ \ object.\r\n\ @author\ Hilman\ Maulana\ 1706985975\r\n\ @version\ 27\ Februari\ 2020\r\n
+comment1.params=
+comment1.target=java.util.ArrayList\ getFoodDatabase()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Location\r\n\ Constructor\ ialah\ sebuah\ method\ yang\ namanya\ sama\ persis\ dengan\ nama\ class-nya\r\n\ Constructor\ sendiri\ berfungsi\ untuk\ memberikan\ nilai\ awal\ pada\ sebuah\ class\ ketika\ class\ tersebut\ dibuat\ dalam\ bentuk\ objek\ pada\ class\ lain\r\n\ Parameter\ yang\ \ digunakan\ yaitu\ listFood\r\n
+comment2.params=
+comment2.target=int\ getLastId()
+comment2.text=\r\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\r\n\r\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\r\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\r\n\ untuk\ tipe\ data\ boolean,\ hanya\ dapat\ menghasilkan\ nilai\ kembali\r\n\ true\ dan\ false.\r\n\ Pada\ method\ ini,\ boolean\ digunakan\ untuk\ menghasilkan\ data\ berupa\r\n\ ada\ atau\ tidak\ data\ makanan\r\n
+comment3.params=id
+comment3.target=Food\ getFoodById(int)
+comment3.text=\r\n\ Untuk\ tipe\ data\ boolean,\ hanya\ dapat\ menghasilkan\ nilai\ kembali\r\n\ true\ dan\ false.\r\n\ Pada\ method\ ini,\ boolean\ digunakan\ untuk\ menghasilkan\ data\ berupa\r\n\ pilihan\ ya\ atau\ tidak\ untuk\ menghapus\ makanan\r\n
+comment4.params=sellerId
+comment4.target=java.util.ArrayList\ getFoodBySeller(int)
+comment5.params=category
+comment5.target=java.util.ArrayList\ getFoodByCategory(FoodCategory)
+comment6.params=food
+comment6.target=boolean\ addFood(Food)
+comment7.params=id
+comment7.target=boolean\ removeFood(int)
+comment8.params=listFood
+comment8.target=java.lang.String[]\ getListFood(java.lang.String[])
+comment8.text=\ \r\n\ Untuk\ tipe\ data\ boolean,\ hanya\ dapat\ menghasilkan\ nilai\ kembali\r\n\ true\ dan\ false.\r\n\ Pada\ bagian\ ini\ untuk\ menampilkan\ list\ makanan\r\n
+numComments=9
