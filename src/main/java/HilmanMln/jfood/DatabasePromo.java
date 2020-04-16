@@ -21,13 +21,7 @@ public class DatabasePromo
     {
         return PROMO_DATABASE;
     }
-    
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
+
     public static int getLastId()
     { 
         return lastId;
@@ -60,7 +54,7 @@ public class DatabasePromo
     public static boolean addPromo(Promo promo) throws PromoCodeAlreadyExistsException
     {
         for(Promo pro : PROMO_DATABASE){
-            if(pro.getCode() == promo.getCode()){
+            if(pro.getCode().equals(promo.getCode())){
                 throw new PromoCodeAlreadyExistsException(promo);
             }
         }
