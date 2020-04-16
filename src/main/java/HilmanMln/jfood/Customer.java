@@ -40,26 +40,29 @@ public class Customer
     {
         this.id=id;
         this.name=name;
-        setPassword(password);
         setEmail(email);
-        this.joinDate=joinDate;
+        setPassword(password);
+        this.email=email;
+        this.password=password;
+        this.joinDate=Calendar.getInstance();
     }
 
     public Customer(int id, String name, String email, String password, int year, int month, int dayOfMonth)
     {
         this.id=id;
         this.name=name;
-        setPassword(password);
         setEmail(email);
-        joinDate=new GregorianCalendar(year, month, dayOfMonth);
+        setPassword(password);
+        setJoinDate(year, month, dayOfMonth);
+        this.joinDate=new GregorianCalendar(year, month, dayOfMonth);
     }
     
     public Customer(int id, String name, String email, String password)
     {
         this.id=id;
         this.name=name;
-        setPassword(password);
-        setEmail(email);
+        this.email=email;
+        this.password=password;
         this.joinDate=Calendar.getInstance();
     }
     

@@ -24,10 +24,10 @@ public class CustomerController {
         return customer;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public Customer addCustomer(@RequestParam(value="name") String name,
-                                @RequestParam(value="email") String email,
-                                @RequestParam(value="password") String password)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public Customer registerCustomer(@RequestParam(value="name") String name,
+                                     @RequestParam(value="email") String email,
+                                     @RequestParam(value="password") String password)
     {
         Customer customer = new Customer(DatabaseCustomer.getLastId()+1, name, email, password);
         try {
@@ -36,6 +36,14 @@ public class CustomerController {
             e.getMessage();
             return null;
         }
+        return customer;
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Customer loginCustomer(@RequestParam(value = "email") String email,
+                                  @RequestParam(value = "password") String password)
+    {
+        Customer customer = DatabaseCustomer.getCustomerLogin(email, password);
         return customer;
     }
 }
