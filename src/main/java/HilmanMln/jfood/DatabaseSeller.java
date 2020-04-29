@@ -1,42 +1,34 @@
 package HilmanMln.jfood;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-/**
- * Write a description of class DatabaseSeller here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class DatabaseSeller {
+public class DatabaseSeller
+{
     private static ArrayList<Seller> SELLER_DATABASE = new ArrayList<Seller>();
     private static int lastId = 0;
 
-    public static ArrayList<Seller> getSellerDatabase() {
+    public static ArrayList<Seller> getSellerDatabase(){
         return SELLER_DATABASE;
     }
 
-    public static int getLastId() {
+    public static int getLastId(){
         return lastId;
     }
 
-    public static Seller getSellerById(int id) throws SellerNotFoundException
-    {
-        for(Seller seller : SELLER_DATABASE){
-            if(seller.getId() == id){
+    public static Seller getSellerById(int id) throws SellerNotFoundException{
+        for (Seller seller : SELLER_DATABASE) {
+            if (seller.getId() == id) {
                 return seller;
             }
         }
         throw new SellerNotFoundException(id);
     }
 
-    public static boolean addSeller(Seller seller) {
+    public static boolean addSeller(Seller seller){
         SELLER_DATABASE.add(seller);
         lastId = seller.getId();
         return true;
     }
-
 
     public static boolean removeSeller(int id) throws SellerNotFoundException{
         for(int i = 0; i < SELLER_DATABASE.size(); i++){
@@ -49,4 +41,3 @@ public class DatabaseSeller {
         throw new SellerNotFoundException(id);
     }
 }
-

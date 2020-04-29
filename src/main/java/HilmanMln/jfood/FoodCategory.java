@@ -11,7 +11,7 @@ public enum FoodCategory
     Beverages("Beverages"), Coffee("Coffee"), Western("Western"), Snacks("Snacks"), Rice("Rice"), Noodles("Noodles"), Bakery("Bakery"), Japanese("Japanese");
     private final String category;
     
-    FoodCategory(String category)
+    private FoodCategory(String category)
     {
         this.category = category;
     }

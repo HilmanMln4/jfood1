@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RequestMapping("/promo")
+@CrossOrigin(origins = "*", allowedHeaders = "")
 @RestController
 public class PromoController {
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -15,8 +16,7 @@ public class PromoController {
 
     @RequestMapping(value = "/{code}", method = RequestMethod.GET)
     public Promo getPromoByCode(@PathVariable String code) throws PromoNotFoundException {
-        Promo promo = DatabasePromo.getPromoByCode(code);
-        return promo;
+        return DatabasePromo.getPromoByCode(code);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -24,19 +24,9 @@ public class PromoController {
                           @RequestParam(value="discount") int discount,
                           @RequestParam(value="minPrice") int minPrice,
                           @RequestParam(value="active") boolean active) throws PromoCodeAlreadyExistsException {
-        try {
-            if (DatabasePromo.addPromo(new Promo(DatabasePromo.getLastId() + 1, code, discount, minPrice, active))) {
-                Promo promo;
-                try {
-                    promo = DatabasePromo.getPromoById(DatabasePromo.getLastId());
-                    return promo;
-                } catch (PromoNotFoundException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-        } catch (PromoCodeAlreadyExistsException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+        Promo promo = new Promo(DatabasePromo.getLastId() + 1, code, discount, minPrice, active);
+        DatabasePromo.addPromo(promo);
+        return promo;
     }
+
 }

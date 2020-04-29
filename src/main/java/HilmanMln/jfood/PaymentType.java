@@ -9,15 +9,15 @@ package HilmanMln.jfood;
 public enum PaymentType
 {
     Cashless("Cashless"), Cash("Cash");
-    private final String type;
+    private String payment;
     
-    PaymentType(String type)
+    private PaymentType(String payment)
     {
-        this.type=type;
+        this.payment=payment;
     }
     
     public String toString()
     {
-        return type;
+        return payment;
     }
 }

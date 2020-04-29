@@ -23,140 +23,86 @@ import java.lang.reflect.Array;
 **/
 public abstract class Invoice
 {
-    // instance variables - replace the example below with your own
-    /** bagian variable
-     * Saya menggunakan private karena supaya hanya digunakan oleh masing-masing parameter.
-     * Adapun tipe data yang digunakan yaitu int, string, dan tipe data buatan sendiri
-     * Kemudian variable yang digunakan yaitu id, idfood, date, totalPrice, custsomer
-     */
     private int id;
     private ArrayList<Food> foods;
     private Calendar date;
     protected int totalPrice;
     private Customer customer;
-    private InvoiceStatus invoiceStatus;
+    private PaymentType paymentType;
+    private InvoiceStatus status;
 
     /**
      * Constructor for objects of class Invoice
-     * Constructor ialah sebuah method yang namanya sama persis dengan nama class-nya
-     * Constructor sendiri berfungsi untuk memberikan nilai awal pada sebuah class ketika class tersebut dibuat dalam bentuk objek pada class lain
-     * Parameter yang  digunakan yaitu id, idfood, date, customer, dan totalprice.
      */
     public Invoice(int id, ArrayList<Food> foods, Customer customer)
     {
-        //this.date=Calendar.getInstance();
-        this.id=id;
-        this.foods=foods;
-        //this.date=date;
-        this.customer=customer;
-        this.invoiceStatus=invoiceStatus.Ongoing;
-        //private PaymentType PAYMENT_TYPE=PaymentType.Cashless
+        // initialise instance variables
+        this.id = id;
+        this.foods = foods;
+        this.date = Calendar.getInstance();
+        this.customer = customer;
+        this.status = InvoiceStatus.Ongoing;
     }
-    
-    /** 
-     * method getter Id akan menampilkan return value sesuai dengan variable yang bersangkutan
-     * Getter Id untuk Invoice
-     */
+
+
     public int getId()
     {
         return id;
     }
-    
-    /** 
-     * method getter IdFood akan menampilkan return value sesuai dengan variable yang bersangkutan
-     * Getter IdFood untuk Invoice
-     */
-    public ArrayList<Food> getFood()
+
+    public ArrayList<Food> getFoods()
     {
         return foods;
     }
-    
-    /** 
-     * method getter Date akan menampilkan return value sesuai dengan variable yang bersangkutan
-     * Getter Date untuk Invoice
-     */
+
     public Calendar getDate()
     {
         return date;
     }
-    
-    /** 
-     * method getter TotalPrice akan menampilkan return value sesuai dengan variable yang bersangkutan
-     * Getter TotalPrice untuk Invoice
-     */
+
     public int getTotalPrice()
     {
         return totalPrice;
     }
-    
-    /** 
-     * method getter Customer akan menampilkan return value sesuai dengan variable yang bersangkutan
-     * Getter Customer untuk Invoice
-     */
+
     public Customer getCustomer()
     {
         return customer;
     }
-    
+
     public abstract PaymentType getPaymentType();
-    
+
     public InvoiceStatus getInvoiceStatus()
     {
-        return invoiceStatus;
+        return status;
     }
-    
-    /**
-     * method setter Id akan set sebuah nilai sesuai dengan variable
-     * Setter Id untuk Invoice
-     */
+
     public void setId(int id)
     {
-        this.id=id;
+        this.id = id;
     }
-    
-    /**
-     * method setter IdFoods akan set sebuah nilai sesuai dengan variable
-     * Setter IdFoods untuk Invoice
-     */
+
     public void setFoods(ArrayList<Food> foods)
     {
-        this.foods=foods;
+        this.foods = foods;
     }
-    
-    /**
-     * method setter Date akan set sebuah nilai sesuai dengan variable
-     * Setter Date untuk Invoice
-     */
-    public void setDate(Calendar date)
-    {
-        this.date=date;
-    }
-    
+
     public void setDate(int year, int month, int dayOfMonth)
     {
-        this.date=new GregorianCalendar(year, month-1, dayOfMonth);
+        this.date.set(year, month, dayOfMonth);
     }
-    
-    /**
-     * method setter TotalPrice akan set sebuah nilai sesuai dengan variable
-     * Setter TotalPrice untuk Invoice
-     */
+
     public abstract void setTotalPrice();
-    
-    /**
-     * method setter Customer akan set sebuah nilai sesuai dengan variable
-     * Setter Customer untuk Invoice
-     */
+
     public void setCustomer(Customer customer)
     {
-        this.customer=customer;
+        this.customer = customer;
     }
-      
-    public void setInvoiceStatus(InvoiceStatus invoiceStatus)
-    {
-        this.invoiceStatus=invoiceStatus;
-    }
-    
-    public abstract String toString();
- }
 
+    public void setInvoiceStatus(InvoiceStatus status)
+    {
+        this.status = status;
+    }
+
+    public abstract String toString();
+}

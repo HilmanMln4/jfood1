@@ -2,10 +2,12 @@ package HilmanMln.jfood.controller;
 
 import HilmanMln.jfood.*;
 import org.springframework.web.bind.annotation.*;
+import jdk.jfr.Category;
 
 import java.util.ArrayList;
 
 @RequestMapping("/food")
+@CrossOrigin(origins = "*", allowedHeaders = "")
 @RestController
 public class FoodController {
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -34,7 +36,7 @@ public class FoodController {
                         @RequestParam(value="sellerID") int sellerId,
                         @RequestParam(value="price") int price,
                         @RequestParam(value="category") FoodCategory category) throws SellerNotFoundException {
-        Food food = new Food(DatabaseFood.getLastId()+1, name, price, category, DatabaseSeller.getSellerById(sellerId));
+        Food food = new Food(DatabaseFood.getLastId()+1, name, DatabaseSeller.getSellerById(sellerId), price, category);
         DatabaseFood.addFood(food);
         return food;
     }

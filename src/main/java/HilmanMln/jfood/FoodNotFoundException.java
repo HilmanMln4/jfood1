@@ -8,6 +8,7 @@ public class FoodNotFoundException extends Exception {
         this.food_error=food_input;
     }
 
+    @Override
     public String getMessage()
     {
         return super.getMessage() + food_error + " not found.";

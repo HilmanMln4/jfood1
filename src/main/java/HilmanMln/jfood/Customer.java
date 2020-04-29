@@ -38,32 +38,32 @@ public class Customer
      */
     public Customer(int id, String name, String email, String password, Calendar joinDate)
     {
-        this.id=id;
-        this.name=name;
+        this.id = id;
+        this.name = name;
+        this.joinDate = joinDate;
+
         setEmail(email);
         setPassword(password);
-        this.email=email;
-        this.password=password;
-        this.joinDate=Calendar.getInstance();
     }
 
     public Customer(int id, String name, String email, String password, int year, int month, int dayOfMonth)
     {
-        this.id=id;
-        this.name=name;
+        this.id = id;
+        this.name = name;
+        this.joinDate = new GregorianCalendar(year, month-1, dayOfMonth);
+
         setEmail(email);
         setPassword(password);
-        setJoinDate(year, month, dayOfMonth);
-        this.joinDate=new GregorianCalendar(year, month, dayOfMonth);
     }
     
     public Customer(int id, String name, String email, String password)
     {
-        this.id=id;
-        this.name=name;
-        this.email=email;
-        this.password=password;
-        this.joinDate=Calendar.getInstance();
+        this.id = id;
+        this.name = name;
+        this.joinDate = Calendar.getInstance();
+
+        setEmail(email);
+        setPassword(password);
     }
     
     /** 
@@ -136,15 +136,11 @@ public class Customer
     public void setEmail(String email)
     {
         String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(email);
-        if(matcher.matches())
-        {
-            this.email=email;
+        if(Pattern.matches(regex,email)){
+            this.email = email;
         }
-        else 
-        {
-            this.email="";
+        else{
+            this.email = "";
         }
     }
     
@@ -155,15 +151,11 @@ public class Customer
     public void setPassword(String password)
     {
         String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
-        Pattern passwordPattern = Pattern.compile(passwordRegex);
-        Matcher passwordMatcher = passwordPattern.matcher(password);
-        if(passwordMatcher.matches())
-        {
-            this.password=password;
+        if(Pattern.matches(passwordRegex,password)){
+            this.password = password;
         }
-        else
-        {
-            this.password="";
+        else{
+            this.password = "";
         }
     }
     
@@ -171,40 +163,27 @@ public class Customer
      * method setter JoinDate akan set sebuah nilai sesuai dengan variable
      * Setter JoinDate untuk Customer
      */
-    public void setJoinDate(Calendar joinDate)
+    public void setJoinDate(GregorianCalendar  joinDate)
     {
         this.joinDate=joinDate;
     }  
     
     public void setJoinDate(int year, int month, int dayOfMonth)
     {
-         joinDate = new GregorianCalendar (year, month, dayOfMonth);
+        this.joinDate.set(year, month-1, dayOfMonth);
     }
     
     public String toString()
     {
-       String hasil = "";
-       if(joinDate != null)
-       {
-           Date tanggal = joinDate.getTime();
-           SimpleDateFormat format1= new SimpleDateFormat("dd-MM-yyyy");
-           String tanggal1=format1.format(tanggal);
-           hasil= "ID:"+id+"\nName: "+name+"\nEmail: "+email+"\nPassword: "+password+"\nJoin Date: "+tanggal1+"\n";;
-           
-       }
-       else
-       {    
-           hasil="ID:"+id+"\nName: "+name+"\nEmail: "+email+"\nPassword: "+password+"\n";
-       }
-       
-       return hasil;
+        if(joinDate != null){
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+            String string = "Id: "+this.id+"\nNama: "+this.name+"\nEmail: "+email+"\nPassword: "+password+"\nJoin Date: " +
+                    dateFormat.format(joinDate.getTime());
+            return string;
+        }
+        else{
+            String string = "Id: "+this.id+"\nNama: "+this.name+"\nEmail: "+email+"\nPassword: "+password;
+            return string;
+        }
     }
-
-    /* /**
-     * Untuk mencetak data sesuai dengan value dalam kurung
-     
-    public void printData()
-    {
-        System.out.println(getName());
-    }*/
 }

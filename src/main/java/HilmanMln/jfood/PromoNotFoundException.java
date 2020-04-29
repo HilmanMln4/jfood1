@@ -8,6 +8,7 @@ public class PromoNotFoundException extends Exception {
         this.promo_error=promo_input;
     }
 
+    @Override
     public String getMessage()
     {
         return super.getMessage() + promo_error + " not found.";

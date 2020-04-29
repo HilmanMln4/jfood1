@@ -13,7 +13,7 @@ public class DatabaseCustomer //Create the class DatabaseCustomer
 {
     // instance variables - replace the example below with your own
     //private static String[] listCustomer;
-    private static ArrayList<Customer> CUSTOMER_DATABASE =  new ArrayList<Customer>();
+    private static ArrayList<Customer> CUSTOMER_DATABASE =  new ArrayList<>();
     private static int lastId = 0;
 
     public DatabaseCustomer()
@@ -32,7 +32,6 @@ public class DatabaseCustomer //Create the class DatabaseCustomer
 
     public static Customer getCustomerById(int id) throws CustomerNotFoundException
     {
-
         for(Customer customer : CUSTOMER_DATABASE)
         {
             if(customer.getId() == id)
@@ -46,7 +45,7 @@ public class DatabaseCustomer //Create the class DatabaseCustomer
     public static boolean addCustomer(Customer customer) throws EmailAlreadyExistsException
     {
         for(Customer cust : CUSTOMER_DATABASE){
-            if(cust.getEmail() == customer.getEmail()){
+            if(cust.getEmail().equals(customer.getEmail())){
                 throw new EmailAlreadyExistsException(customer);
             }
         }
@@ -56,13 +55,11 @@ public class DatabaseCustomer //Create the class DatabaseCustomer
     }
 
     public static boolean removeCustomer(int id) throws CustomerNotFoundException {
-        boolean returnValue = false;
-        for(Customer customerDB : CUSTOMER_DATABASE)
-        {
-            if(customerDB.getId() == id)
-            {
-                CUSTOMER_DATABASE.remove(id);
-                returnValue = true;
+        for(int i = 0; i < CUSTOMER_DATABASE.size(); i++){
+            Customer customer = CUSTOMER_DATABASE.get(i);
+            if (customer.getId() == id){
+                CUSTOMER_DATABASE.remove(i);
+                return true;
             }
         }
         throw new CustomerNotFoundException(id);
@@ -77,5 +74,4 @@ public class DatabaseCustomer //Create the class DatabaseCustomer
         }
         return null;
     }
-
 }

@@ -20,10 +20,10 @@ public class JFood
         DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId()+1, "HilmanMaulana", "hilman.maulana@ui.ac.id", "085778772518", lokasi));
         DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId()+1, "Maulana", "hilmanmaulana71@ui.ac.id", "085778772518", lokasi1));
         DatabaseSeller.addSeller(new Seller(DatabaseSeller.getLastId()+1, "Gilang", "gilang@ui.ac.id", "085778772518", lokasi2));
-            DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1,"Ayam Bucket", 75000, FoodCategory.Western, DatabaseSeller.getSellerById(DatabaseSeller.getLastId())));
-            DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1,"French Fries", 20000, FoodCategory.Western, DatabaseSeller.getSellerById(DatabaseSeller.getLastId())));
-            DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1,"Ice Cream", 5000, FoodCategory.Western, DatabaseSeller.getSellerById(DatabaseSeller.getLastId())));
-        DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1,"Choco Pie", 10000, FoodCategory.Western, DatabaseSeller.getSellerById(DatabaseSeller.getLastId())));
+            DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1,"Ayam Bucket", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 75000, FoodCategory.Western));
+            DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1,"French Fries", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 20000, FoodCategory.Western));
+            DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1,"Ice Cream", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 5000, FoodCategory.Western));
+        DatabaseFood.addFood(new Food(DatabaseFood.getLastId()+1,"Choco Pie", DatabaseSeller.getSellerById(DatabaseSeller.getLastId()), 10000, FoodCategory.Western));
         SpringApplication.run(JFood.class, args);
     }
 }

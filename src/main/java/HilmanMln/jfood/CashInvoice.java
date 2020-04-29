@@ -59,7 +59,7 @@ public class CashInvoice extends Invoice
     public void setTotalPrice()
     {
         super.totalPrice=0;
-        for(Food foods : getFood())
+        for(Food foods : getFoods())
         {
             super.totalPrice=super.totalPrice+foods.getPrice();
         }
@@ -69,18 +69,17 @@ public class CashInvoice extends Invoice
     @Override
      public String toString() {
         StringBuilder foodName = new StringBuilder();
-        for (Food food: getFood()){
+        for (Food food: getFoods()){
             foodName.append(food.getName()).append(", ");
         }
 
-        DateTimeFormatter tgl = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-        LocalDateTime now = LocalDateTime.now();
-
+        SimpleDateFormat format1 = new SimpleDateFormat("dd MMMM yyyy");
+        String date = format1.format(getDate().getTime());
         if (getDeliveryFee() != 0) {
             return  "================Invoice================" + "\n" +
                     "ID          : " + getId() + "\n" +
                     "Name        : " + foodName + "\n" +
-                    "Date        : " + tgl.format(now)+ "\n" +
+                    "Date        : " + date + "\n" +
                     "Customer    : " + getCustomer().getName() + "\n" +
                     "Total Price : " + totalPrice + "\n" +
                     "Status      : " + getInvoiceStatus() + "\n" +
@@ -91,7 +90,7 @@ public class CashInvoice extends Invoice
             return  "================Invoice================" + "\n" +
                     "ID          : " + getId() + "\n" +
                     "Name        : " + foodName + "\n" +
-                    "Date        : " + tgl.format(now) + "\n" +
+                    "Date        : " + date + "\n" +
                     "Customer    : " + getCustomer().getName() + "\n" +
                     "Total Price : " + totalPrice + "\n" +
                     "Status      : " + getInvoiceStatus() + "\n" +

@@ -37,7 +37,7 @@ public class DatabaseFood //Create the class DatabaseFood
     }
 
     public static ArrayList<Food> getFoodBySeller(int sellerId){
-        ArrayList<Food> LIST_FOOD_BY_SELLER = new ArrayList<Food>();
+        ArrayList<Food> LIST_FOOD_BY_SELLER = new ArrayList<>();
         for(Food food : FOOD_DATABASE){
             if(food.getSeller().getId() == sellerId){
                 LIST_FOOD_BY_SELLER.add(food);
@@ -66,9 +66,10 @@ public class DatabaseFood //Create the class DatabaseFood
     }
 
     public static boolean removeFood(int id) throws FoodNotFoundException {
-        for(Food food : FOOD_DATABASE) {
-            if(food.getId() == id) {
-                FOOD_DATABASE.remove(food);
+        for(int i = 0; i < FOOD_DATABASE.size(); i++){
+            Food food = FOOD_DATABASE.get(i);
+            if (food.getId() == id){
+                FOOD_DATABASE.remove(i);
                 return true;
             }
         }
