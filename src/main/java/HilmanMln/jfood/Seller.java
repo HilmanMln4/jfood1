@@ -26,7 +26,7 @@ public class Seller
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.location = location;
+        //this.location = location;
     }
 
     public int getId()
