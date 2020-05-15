@@ -14,7 +14,7 @@ public class DatabaseFood //Create the class DatabaseFood
      * declare the variables
      * of the DatabaseFood
      */
-    private static ArrayList<Food> FOOD_DATABASE=new ArrayList<Food>();;
+    private static ArrayList<Food> FOOD_DATABASE=new ArrayList<Food>();
     public static int lastId = 0;
 
     public static ArrayList<Food> getFoodDatabase()

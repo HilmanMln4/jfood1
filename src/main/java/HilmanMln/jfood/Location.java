@@ -27,8 +27,8 @@ public class Location
     public Location(String city, String province, String description)
     {
         // initialise instance variable
-        this.province=province;
         this.city=city;
+        this.province=province;
         this.description=description;
     }
 

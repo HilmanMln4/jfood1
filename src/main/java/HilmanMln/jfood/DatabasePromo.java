@@ -42,4 +42,35 @@ public class DatabasePromo {
         lastId = promo.getId();
         return true;
     }
+
+    public static boolean activatePromo(int id){
+        for(Promo promo : PROMO_DATABASE) {
+            if(promo.getId() == id) {
+                promo.setActive(true);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean deactivatePromo(int id){
+        for (Promo promo : PROMO_DATABASE) {
+            if (promo.getActive()) {
+                promo.setActive(false);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean remove(int id) throws PromoNotFoundException{
+        for(int i = 0; i < PROMO_DATABASE.size(); i++){
+            Promo promo = PROMO_DATABASE.get(i);
+            if (promo.getId() == id){
+                PROMO_DATABASE.remove(i);
+                return true;
+            }
+        }
+        throw new PromoNotFoundException(id);
+    }
 }

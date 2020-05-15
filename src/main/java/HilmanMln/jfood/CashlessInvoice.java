@@ -33,7 +33,7 @@ public class CashlessInvoice extends Invoice
         super(id, foods, customer);
     }
 
-    public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer ,Promo promo)
+    public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer, Promo promo)
     {
         super(id, foods, customer /*invoiceStatus*/);
         this.promo=promo;

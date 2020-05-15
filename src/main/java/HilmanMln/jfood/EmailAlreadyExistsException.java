@@ -7,7 +7,7 @@ public class EmailAlreadyExistsException extends Exception
     public EmailAlreadyExistsException(Customer customer_input)
     {
         super("Customer Email : ");
-        customer_error = customer_input;
+        this.customer_error = customer_input;
     }
 
     @Override

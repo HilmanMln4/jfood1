@@ -7,7 +7,7 @@ public class CustomerNotFoundException extends Exception
     public CustomerNotFoundException(int customer_input)
     {
         super("Customer ID : ");
-        customer_error = customer_input;
+        this.customer_error = customer_input;
     }
     @Override
     public String getMessage()

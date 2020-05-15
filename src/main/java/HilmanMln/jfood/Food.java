@@ -79,7 +79,7 @@ public class Food {
                 "\nSeller   : " + getSeller().getName() +
                 "\nFood     : " + getName() +
                 "\nCity     : " + getSeller().getLocation().getCity() +
-                "\nPrice    : " +price +
+                "\nPrice    : " + price +
                 "\nCategory : " + category;
     }
 }
