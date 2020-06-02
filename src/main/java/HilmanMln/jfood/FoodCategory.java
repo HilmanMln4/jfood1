@@ -1,19 +1,19 @@
 package HilmanMln.jfood;
-
 /**
  * Enumeration class FoodCategory - write a description of the enum class here
  *
- * @author (your name here)
- * @version (version number or date here)
+ * @author Hilman
+ * @version 
  */
 public enum FoodCategory
 {
-    Beverages("Beverages"), Coffee("Coffee"), Western("Western"), Snacks("Snacks"), Rice("Rice"), Noodles("Noodles"), Bakery("Bakery"), Japanese("Japanese");
+    Beverages("Beverages"), Coffe("Coffe"), Western("Western"), Snacks("Snacks"), Rice("Rice"), Noddles("Noodles"), Bakery("Bakery"), Japanese("Japanese");
+    
     private String category;
     
-    private FoodCategory(String category)
+    FoodCategory(String category)
     {
-        this.category = category;
+        this.category = category; 
     }
     
     public String toString()

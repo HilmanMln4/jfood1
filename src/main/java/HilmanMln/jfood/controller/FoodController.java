@@ -1,10 +1,9 @@
 package HilmanMln.jfood.controller;
 
 import HilmanMln.jfood.*;
-import org.springframework.web.bind.annotation.*;
 import jdk.jfr.Category;
-
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.*;
+import java.util.*;
 
 @RequestMapping("/food")
 @CrossOrigin(origins = "*", allowedHeaders = "")
@@ -41,4 +40,3 @@ public class FoodController {
         return food;
     }
 }
-

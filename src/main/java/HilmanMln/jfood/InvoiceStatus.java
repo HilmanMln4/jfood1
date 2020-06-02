@@ -1,5 +1,4 @@
 package HilmanMln.jfood;
-
 /**
  * Enumeration class InvoiceStatus - write a description of the enum class here
  *
@@ -8,17 +7,19 @@ package HilmanMln.jfood;
  */
 public enum InvoiceStatus
 {
-    Ongoing("Ongoing"), Finished("Finished"), Cancelled("Cancelled");
+    Ongoing("Ongoing"),
+    Finished("Finished"),
+    Cancelled("Canceled");
+
     private String status;
-    
+
     InvoiceStatus(String status)
     {
-        this.status=status;
+        this.status = status;
     }
-    
+
     public String toString()
     {
-        return status;
+        return this.status;
     }
 }
-

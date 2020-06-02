@@ -1,5 +1,4 @@
 package HilmanMln.jfood;
-
 /**
  * Enumeration class PaymentType - write a description of the enum class here
  *
@@ -9,15 +8,16 @@ package HilmanMln.jfood;
 public enum PaymentType
 {
     Cashless("Cashless"), Cash("Cash");
-    private String payment;
     
-    private PaymentType(String payment)
+    private String paymentType;
+    
+    PaymentType(String paymentType)
     {
-        this.payment=payment;
+        this.paymentType = paymentType;
     }
     
     public String toString()
     {
-        return payment;
+        return paymentType;
     }
 }

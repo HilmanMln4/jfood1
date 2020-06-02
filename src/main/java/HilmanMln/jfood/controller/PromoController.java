@@ -2,8 +2,7 @@ package HilmanMln.jfood.controller;
 
 import HilmanMln.jfood.*;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
+import java.util.*;
 
 @RequestMapping("/promo")
 @CrossOrigin(origins = "*", allowedHeaders = "")
@@ -15,7 +14,7 @@ public class PromoController {
     }
 
     @RequestMapping(value = "/{code}", method = RequestMethod.GET)
-    public Promo getPromoByCode(@PathVariable String code) throws PromoNotFoundException {
+    public Promo getPromoByCode(@PathVariable String code) throws SellerNotFoundException {
         return DatabasePromo.getPromoByCode(code);
     }
 

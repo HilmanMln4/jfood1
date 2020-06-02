@@ -2,45 +2,55 @@ package HilmanMln.jfood.controller;
 
 import HilmanMln.jfood.*;
 import org.springframework.web.bind.annotation.*;
-import javax.xml.crypto.Data;
-import java.util.ArrayList;
+import java.util.*;
 
 @RequestMapping("/invoice")
 @CrossOrigin(origins = "*", allowedHeaders = "")
 @RestController
 public class InvoiceController {
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ArrayList<Invoice> getAllInvoice(){
+    public ArrayList<Invoice> getAllInvoice() {
         return DatabaseInvoice.getInvoiceDatabase();
     }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Invoice getInvoiceById(@PathVariable int id) {
+    public Invoice getInvoiceById(@PathVariable int id) throws InvoiceNotFoundException {
         Invoice invoice = DatabaseInvoice.getInvoiceById(id);
         return invoice;
     }
 
     @RequestMapping(value = "/customer/{customerId}", method = RequestMethod.GET)
-    public ArrayList<Invoice> getInvoiceByCustomer(@PathVariable int customerId) {
-        return DatabaseInvoice.getInvoiceByCustomer(customerId);
+    public ArrayList<Invoice> getInvoiceByCustomer (@PathVariable int customerId) throws InvoiceNotFoundException {
+        ArrayList<Invoice> invoice = DatabaseInvoice.getInvoiceByCustomer(customerId);
+        return invoice;
     }
 
     @RequestMapping(value = "/invoiceStatus/{id}", method = RequestMethod.PUT)
-    public Invoice changeInvoiceStatus(@RequestParam(value="id") int id,
-                                       @RequestParam(value="invoiceStatus") InvoiceStatus invoiceStatus) {
-        DatabaseInvoice.changeInvoiceStatus(id, invoiceStatus);
-        Invoice invoice = DatabaseInvoice.getInvoiceById(id);
-        return invoice;
+    public Invoice changeInvoiceStatus(@PathVariable int id,
+                                       @RequestParam(value = "invoiceStatus") InvoiceStatus status)
+    {
+        boolean cek = DatabaseInvoice.changeInvoiceStatus(id, status);
+        if(cek) {
+            try {
+                return DatabaseInvoice.getInvoiceById(id);
+            } catch (InvoiceNotFoundException e) {
+                System.out.println(e.getMessage());
+                return null;
+            }
+        }
+        return null;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public Boolean removeInvoice(@RequestParam(value="id") int id) throws InvoiceNotFoundException {
-        Boolean invoice = DatabaseInvoice.removeInvoice(id);
-        return invoice;
+    public boolean removeInvoice(@PathVariable int id) {
+        try {
+            return DatabaseInvoice.removeInvoiceStatus(id);
+        } catch (InvoiceNotFoundException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
-
-    @RequestMapping(value = "createCashInvoice", method = RequestMethod.POST)
+    @RequestMapping(value = "/createCashInvoice", method = RequestMethod.POST)
     public Invoice addCashInvoice(@RequestParam(value="foodIdList") ArrayList<Integer> foodIdList,
                                   @RequestParam(value="customerId") int customerId,
                                   @RequestParam(value="deliveryFee", required = false, defaultValue = "0") int deliveryFee)

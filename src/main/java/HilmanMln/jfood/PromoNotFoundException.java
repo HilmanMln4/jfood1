@@ -5,14 +5,11 @@ public class PromoNotFoundException extends Exception {
 
     public PromoNotFoundException(int promo_input) {
         super("Promo ID : ");
-        this.promo_error=promo_input;
+        this.promo_error = promo_input;
     }
 
-    @Override
     public String getMessage()
     {
         return super.getMessage() + promo_error + " not found.";
     }
 }
-
-

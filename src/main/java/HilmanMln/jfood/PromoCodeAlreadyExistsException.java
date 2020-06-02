@@ -1,19 +1,17 @@
 package HilmanMln.jfood;
 
-public class PromoCodeAlreadyExistsException extends Exception {
+public class PromoCodeAlreadyExistsException extends Exception
+{
     private Promo promo_error;
 
-    public PromoCodeAlreadyExistsException(Promo promo_input) {
+    public PromoCodeAlreadyExistsException(Promo promo_input)
+    {
         super("Promo Code : ");
-        this.promo_error=promo_input;
+        promo_error = promo_input;
     }
 
-    @Override
     public String getMessage()
     {
-        return super.getMessage() + promo_error.getCode() + " already exists.";
-
+        return super.getMessage() + promo_error.getCode() + " not found.";
     }
 }
-
-

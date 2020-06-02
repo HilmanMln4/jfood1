@@ -1,28 +1,24 @@
 package HilmanMln.jfood;
 
 import java.util.ArrayList;
-import java.lang.reflect.Array;
+import java.util.*;
 /**
  * Kelas DatabaseFood merupakan bagian dari JFood yang menangani pusat data makanan.
  * Class adalah “blueprint” atau “cetakan” untuk menciptakan suatu  object.
  * @author Hilman Maulana 1706985975
  * @version 27 Februari 2020
-**/
-public class DatabaseFood //Create the class DatabaseFood
-{
-    /* Below is used to
-     * declare the variables
-     * of the DatabaseFood
-     */
-    private static ArrayList<Food> FOOD_DATABASE=new ArrayList<Food>();
-    public static int lastId = 0;
+ **/
+public class DatabaseFood {
+    // instance variables - replace the example below with your own
+    //merupakan field dari kelas DatabaseFood
+    private static ArrayList<Food> FOOD_DATABASE = new ArrayList<>();
+    private static int lastId = 0;
 
-    public static ArrayList<Food> getFoodDatabase()
-    {
+    public static ArrayList<Food> getFoodDatabase() {
         return FOOD_DATABASE;
     }
-    public static int getLastId()
-    {
+
+    public static int getLastId() {
         return lastId;
     }
 
@@ -36,40 +32,39 @@ public class DatabaseFood //Create the class DatabaseFood
         throw new FoodNotFoundException(id);
     }
 
-    public static ArrayList<Food> getFoodBySeller(int sellerId){
-        ArrayList<Food> LIST_FOOD_BY_SELLER = new ArrayList<>();
-        for(Food food : FOOD_DATABASE){
-            if(food.getSeller().getId() == sellerId){
+    public static ArrayList<Food> getFoodBySeller(int sellerId) {
+        ArrayList<Food> LIST_FOOD_BY_SELLER = new ArrayList<Food>();
+        for (Food food : FOOD_DATABASE) {
+            if (food.getSeller().getId() == sellerId) {
                 LIST_FOOD_BY_SELLER.add(food);
+
             }
         }
         return LIST_FOOD_BY_SELLER;
     }
 
-    public static ArrayList<Food> getFoodByCategory(FoodCategory category)
-    {
-        ArrayList<Food> list = new ArrayList<>();
-        for(Food foods: FOOD_DATABASE)
-        {
-            if (foods.getCategory() == category)
-            {
-                list.add(foods);
+    public static ArrayList<Food> getFoodByCategory(FoodCategory category) {
+        ArrayList<Food> LIST_FOOD_BY_CATEGORY = new ArrayList<Food>();
+        for (Food food : FOOD_DATABASE) {
+            if (food.getCategory() == category) {
+                LIST_FOOD_BY_CATEGORY.add(food);
             }
         }
-        return list;
+        return LIST_FOOD_BY_CATEGORY;
     }
-    public static boolean addFood(Food food)
-    {
+
+    public static boolean addFood(Food food) {
+
         FOOD_DATABASE.add(food);
         lastId = food.getId();
         return true;
+
     }
 
-    public static boolean removeFood(int id) throws FoodNotFoundException {
-        for(int i = 0; i < FOOD_DATABASE.size(); i++){
-            Food food = FOOD_DATABASE.get(i);
-            if (food.getId() == id){
-                FOOD_DATABASE.remove(i);
+    public static boolean removeFood(int id) throws FoodNotFoundException{
+        for (Food food : FOOD_DATABASE) {
+            if (food.getId() == id) {
+                FOOD_DATABASE.remove(food);
                 return true;
             }
         }

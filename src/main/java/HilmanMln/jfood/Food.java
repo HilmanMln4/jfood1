@@ -1,85 +1,160 @@
 package HilmanMln.jfood;
-
 /**
  * Kelas Food merupakan bagian dari JFood yang menangani data menu makan yang terdiri dari id, nama, seller, harga, kategori.
  * Class adalah “blueprint” atau “cetakan” untuk menciptakan suatu  object.
  * @author Hilman Maulana 1706985975
  * @version 27 Februari 2020
-**/
-
-public class Food {
-    // instance variables - replace the example below with your own
+ **/
+public class Food //create class food
+{
+    /**
+     * membuat variabel di class food
+     * variabel instance
+     * private hanya bisa diberikan pada member class
+     */
     private int id;
     private String name;
-    private int price;
     private Seller seller;
+    private int price;
     private FoodCategory category;
 
     /**
-     * Constructor for objects of class Food
+     *  Constructor untuk object class Food
+     *  constructor seperti metode yang dipanggil ketika object di instance
+     *  nama constructor harus sama dengan class
+     *
+     *  @param id berfungsi untuk menginisialisasikan input id baru
+     *  @param name berfungsi untuk menginisialisasikan input name baru
+     *  @param seller berfungsi untuk menginisialisasikan input seller baru
+     *  @param price berfungsi untuk menginisialisasikan input price baru
+     *  @param category berfungsi untuk menginisialisasikan input category baru
+     *
      */
-    public Food(int id, String name, Seller seller, int price, FoodCategory category) {
-        // initialise instance variables
+    public Food(int id, String name, Seller seller, int price, FoodCategory category)
+    {
         this.id = id;
         this.name = name;
         this.seller = seller;
         this.price = price;
-        this.category = category;
+        this.category = category;// initialise instance variables
+ 
     }
-
-    public int getId() {
-        // put your code here
+    
+    /**
+     * getter id untuk food
+     * @return id berfungsi untuk mengecek variabel id ke variabel instance
+     */
+    
+    public int getId()
+    {
         return id;
     }
-
-    public String getName() {
-        // put your code here
+    
+    /**
+     * getter name untuk food
+     * @return name berfungsi untuk mengecek variabel name ke variabel instance
+     */
+    
+     public String getName()
+    {
         return name;
     }
-
-    public Seller getSeller() {
+    
+    /**
+     * getter seller untuk food
+     * @return seller berfungsi untuk mengecek variabel seller ke variabel instance
+     */
+    
+    public Seller getSeller()
+    {
         return seller;
     }
-
-    public int getPrice() {
+    
+    /**
+     * getter price untuk food
+     * @return price berfungsi untuk mengecek variabel price ke variabel instance
+     */
+    
+    public int getPrice()
+    {
         return price;
     }
-
-    public FoodCategory getCategory() {
+    
+    /**
+     * getter category untuk food
+     * @return category berfungsi untuk mengecek variabel category ke variabel instance
+     */
+    
+    public FoodCategory getCategory()
+    {
         return category;
     }
-
-    public void setId(int id) {
+    
+    /**
+     * setter id untuk food
+     * @param id untuk set ke instance variabel id
+     */
+    public void setId(int id)
+    {
         this.id = id;
     }
-
+    
+    /**
+     * setter name untuk food
+     * @param name untuk set ke instance variabel name
+     */
     public void setName(String name)
     {
         this.name = name;
     }
-
-    public void setSeller(Seller seller)
+    
+    /**
+     * setter seller untuk food
+     * @param seller untuk set ke instance variabel seller
+     */
+      public void setSeller(Seller seller)
     {
         this.seller = seller;
     }
-
+    
+    /**
+     * setter price untuk food
+     * @param price untuk set ke instance variabel price
+     */
     public void setPrice(int price)
     {
         this.price = price;
     }
-
+    
+    /**
+     * setter category untuk food
+     * @param category untuk set ke instance variabel category
+     */
     public void setCategory(FoodCategory category)
     {
         this.category = category;
     }
-
-    public String toString()
+    
+    public void printData()
     {
-        return  "\nID       : " + id +
-                "\nSeller   : " + getSeller().getName() +
-                "\nFood     : " + getName() +
-                "\nCity     : " + getSeller().getLocation().getCity() +
-                "\nPrice    : " + price +
-                "\nCategory : " + category;
+        System.out.println("==========FOOD========");
+        System.out.println("ID:" +id);
+        System.out.println("Name:" +name);
+        System.out.println("Seller:" +getSeller().getName());
+        System.out.println("City:" +getSeller().getLocation().getCity());
+        System.out.println("Price:" +price);
+        System.out.println("Category:" +category);
+        
     }
+    
+      public String toString(){
+          return "==========FOOD==========" +
+                  "\nId = " + getId() +
+                  "\nName = " + getName() +
+                  "\nSeller = " + getSeller().getName() +
+                  "\nCity = " + seller.getLocation().getCity() +
+                  "\nPrice = " + getPrice() +
+                  "\nCategory = " + getCategory().toString() + "\n";
+      }
+
 }

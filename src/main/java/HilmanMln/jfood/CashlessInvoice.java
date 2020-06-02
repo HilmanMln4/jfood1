@@ -1,5 +1,4 @@
 package HilmanMln.jfood;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.*;
@@ -12,17 +11,20 @@ import java.util.regex.Matcher;
 import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.lang.Object;
+
 /**
  * Write a description of class CashlessInvoice here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Hilman
+ * @version 
  */
 public class CashlessInvoice extends Invoice
 {
     // instance variables - replace the example below with your own
     private static final PaymentType PAYMENT_TYPE=PaymentType.Cashless;
     private Promo promo;
+
 
     /**
      * Constructor for objects of class CashlessInvoice
@@ -35,11 +37,10 @@ public class CashlessInvoice extends Invoice
 
     public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer, Promo promo)
     {
-        super(id, foods, customer /*invoiceStatus*/);
+        super(id, foods, customer);
         this.promo=promo;
     }
-
-    @Override
+    
     public PaymentType getPaymentType()
     {
         return PAYMENT_TYPE;
@@ -54,48 +55,50 @@ public class CashlessInvoice extends Invoice
     {
         this.promo=promo;
     }
-    
-     public void setTotalPrice() {
-         super.totalPrice=0;
-         for(Food foods : getFoods())
-         {
-             super.totalPrice=super.totalPrice+foods.getPrice();
-         }
-         if(super.totalPrice>=promo.getMinPrice() && promo.getActive()) {
-             super.totalPrice = super.totalPrice - promo.getDiscount();
-         }
-     }
 
-     @Override
-     public String toString() {
-         StringBuilder foodName = new StringBuilder();
-         for (Food food: getFoods()){
-             foodName.append(food.getName()).append(", ");
-         }
+    public void setTotalPrice() {
+        for(Food foods: getFoods())
+        {
+            if ((promo != null) && (promo.getActive() == true) && (foods.getPrice() >= promo.getMinPrice())) {
+                super.totalPrice += foods.getPrice() - promo.getDiscount();
+            } else {
+                super.totalPrice += foods.getPrice();
+            }
+        }
+    }
 
-         SimpleDateFormat format1 = new SimpleDateFormat("dd MMMM yyyy");
-         String date = format1.format(getDate().getTime());
-         if (getPromo() != null && getPromo().getActive() && totalPrice > getPromo().getMinPrice())
-         {
-             return "================Invoice================" + "\n" +
-                     "ID          : " + getId() + "\n" +
-                     "Name        : " + foodName + "\n" +
-                     "Date        : " + date + "\n" +
-                     "Customer    : " + getCustomer().getName() + "\n" +
-                     "Promo       : " + getPromo().getCode() + "\n" +
-                     "Total Price : " + totalPrice + "\n" +
-                     "Status      : " + getInvoiceStatus() + "\n" +
-                     "Payment Type: " + getPaymentType();
-         }
-         else{
-             return "================Invoice================" + "\n" +
-                     "ID          : " + getId() + "\n" +
-                     "Name        : " + foodName + "\n" +
-                     "Date        : " + date + "\n" +
-                     "Customer    : " + getCustomer().getName() + "\n" +
-                     "Total Price : " + totalPrice + "\n" +
-                     "Status      : " + getInvoiceStatus() + "\n" +
-                     "Payment Type: " + getPaymentType();
-         }
-     }
+    public String toString(){
+        int tempPrice = 0;
+        String foodName = "";
+        for (Food food : getFoods())
+        {
+            tempPrice += food.getPrice();
+            foodName += food.getName() + ", ";
+        }
+        SimpleDateFormat format1 = new SimpleDateFormat("dd MMMM yyyy");
+        String date = format1.format(getDate().getTime());
+        if (getPromo() != null && getPromo().getActive() == true && tempPrice > getPromo().getMinPrice())
+        {
+            return "\n================Invoice================" + "\n" +
+                    "ID: " + getId() + "\n" +
+                    "Name: " + foodName + "\n" +
+                    "Date: " + date + "\n" +
+                    "Customer: " + getCustomer().getName() + "\n" +
+                    "Promo: " + getPromo().getCode() + "\n" +
+                    "Total Price: " + totalPrice + "\n" +
+                    "Status: " + getInvoiceStatus() + "\n" +
+                    "Payment Type: " + getPaymentType() + "\n";
+        }
+        else
+        {
+            return "\n================Invoice================" + "\n" +
+                    "ID: " + getId() + "\n" +
+                    "Name: " + foodName + "\n" +
+                    "Date: " + date + "\n" +
+                    "Customer: " + getCustomer().getName() + "\n" +
+                    "Total Price: " + totalPrice + "\n" +
+                    "Status: " + getInvoiceStatus() + "\n" +
+                    "Payment Type: " + getPaymentType() + "\n";
+        }
+    }
 }

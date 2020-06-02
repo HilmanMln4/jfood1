@@ -1,41 +1,29 @@
 package HilmanMln.jfood;
 
 import java.util.ArrayList;
-import java.lang.reflect.Array;
 
 /**
- * Write a description of class DatabaseCustomer here.
+ * Write a description of class DatabaseFood here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Hilman
+ * @version
+ * 
  */
-public class DatabaseCustomer //Create the class DatabaseCustomer
-{
-    // instance variables - replace the example below with your own
-    //private static String[] listCustomer;
-    private static ArrayList<Customer> CUSTOMER_DATABASE =  new ArrayList<>();
+public class DatabaseCustomer{
+    private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<>();
     private static int lastId = 0;
 
-    public DatabaseCustomer()
-    {
-
-    }
-
-    public static ArrayList<Customer> getCustomerDatabase()
-    {
+    public static ArrayList<Customer> getCustomerDatabase(){
         return CUSTOMER_DATABASE;
     }
-    public static int getLastId()
-    {
+
+    public static int getLastId() {
         return lastId;
     }
 
-    public static Customer getCustomerById(int id) throws CustomerNotFoundException
-    {
-        for(Customer customer : CUSTOMER_DATABASE)
-        {
-            if(customer.getId() == id)
-            {
+    public static Customer getCustomerById(int id) throws CustomerNotFoundException{
+        for(Customer customer : CUSTOMER_DATABASE){
+            if(customer.getId() == id){
                 return customer;
             }
         }
@@ -45,7 +33,7 @@ public class DatabaseCustomer //Create the class DatabaseCustomer
     public static boolean addCustomer(Customer customer) throws EmailAlreadyExistsException
     {
         for(Customer cust : CUSTOMER_DATABASE){
-            if(cust.getEmail().equals(customer.getEmail())){
+            if(cust.getEmail() == customer.getEmail()){
                 throw new EmailAlreadyExistsException(customer);
             }
         }
@@ -54,22 +42,21 @@ public class DatabaseCustomer //Create the class DatabaseCustomer
         return true;
     }
 
-    public static boolean removeCustomer(int id) throws CustomerNotFoundException {
-        for(int i = 0; i < CUSTOMER_DATABASE.size(); i++){
-            Customer customer = CUSTOMER_DATABASE.get(i);
-            if (customer.getId() == id){
-                CUSTOMER_DATABASE.remove(i);
+    public static boolean removeCustomer(int id) throws CustomerNotFoundException{
+        for(Customer customer : CUSTOMER_DATABASE){
+            if(customer.getId() == id){
+                CUSTOMER_DATABASE.remove(customer);
                 return true;
             }
         }
         throw new CustomerNotFoundException(id);
     }
+
     public static Customer getCustomerLogin(String email, String password){
-        for(Customer customer : CUSTOMER_DATABASE)
-        {
-            if(customer.getEmail().equals(email) && customer.getPassword().equals(password))
+        for (Customer customerPtr : CUSTOMER_DATABASE){
+            if (customerPtr.getEmail().equals(email) && customerPtr.getPassword().equals(password))
             {
-                return customer;
+                return customerPtr;
             }
         }
         return null;

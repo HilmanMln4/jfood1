@@ -12,89 +12,76 @@ import java.util.regex.Matcher;
 import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.lang.Object;
 
 /**
  * Write a description of class CashInvoice here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Hilman
+ * @version
  */
-public class CashInvoice extends Invoice
-{
+public class CashInvoice extends Invoice {
     // instance variables - replace the example below with your own
-    private static PaymentType PAYMENT_TYPE=PaymentType.Cash;
-    private int deliveryFee=0;
+    private static final PaymentType PAYMENT_TYPE = PaymentType.Cash;
+    private int deliveryFee;
+
 
     /**
      * Constructor for objects of class CashInvoice
      */
-    public CashInvoice(int id, ArrayList<Food> foods, Customer customer)
-    {
+    public CashInvoice(int id, ArrayList<Food> foods, Customer customer) {
         super(id, foods, customer);
     }
 
-    public CashInvoice(int id, ArrayList<Food> foods, Customer customer, int deliveryFee)
-    {
+    public CashInvoice(int id, ArrayList<Food> foods, Customer customer, int deliveryFee) {
         super(id, foods, customer);
-        this.deliveryFee=deliveryFee;
+        this.deliveryFee = deliveryFee;
     }
 
-    @Override
-    public PaymentType getPaymentType()
-    {
+    public PaymentType getPaymentType() {
         return PAYMENT_TYPE;
     }
-    
-    public int getDeliveryFee()
-    {
+
+    public int getDeliveryFee() {
         return deliveryFee;
     }
-    
-    public void setDeliveryFee(int deliveryFee)
-    {
-        this.deliveryFee=deliveryFee;
+
+    public void setDeliveryFee(int deliveryFee) {
+        this.deliveryFee = deliveryFee;
     }
 
-    @Override
-    public void setTotalPrice()
-    {
-        super.totalPrice=0;
-        for(Food foods : getFoods())
+    public void setTotalPrice() {
+        if(deliveryFee > 0)
         {
-            super.totalPrice=super.totalPrice+foods.getPrice();
+            for(Food foods:getFoods()) {
+                super.totalPrice += foods.getPrice();
+            }
+            super.totalPrice += getDeliveryFee();
         }
-        super.totalPrice=super.totalPrice+deliveryFee;
-    }
-
-    @Override
-     public String toString() {
-        StringBuilder foodName = new StringBuilder();
-        for (Food food: getFoods()){
-            foodName.append(food.getName()).append(", ");
-        }
-
-        SimpleDateFormat format1 = new SimpleDateFormat("dd MMMM yyyy");
-        String date = format1.format(getDate().getTime());
-        if (getDeliveryFee() != 0) {
-            return  "================Invoice================" + "\n" +
-                    "ID          : " + getId() + "\n" +
-                    "Name        : " + foodName + "\n" +
-                    "Date        : " + date + "\n" +
-                    "Customer    : " + getCustomer().getName() + "\n" +
-                    "Total Price : " + totalPrice + "\n" +
-                    "Status      : " + getInvoiceStatus() + "\n" +
-                    "Payment Type: " + getPaymentType() + "\n" +
-                    "Delivery Fee: " + getDeliveryFee();
-        }
-        else{
-            return  "================Invoice================" + "\n" +
-                    "ID          : " + getId() + "\n" +
-                    "Name        : " + foodName + "\n" +
-                    "Date        : " + date + "\n" +
-                    "Customer    : " + getCustomer().getName() + "\n" +
-                    "Total Price : " + totalPrice + "\n" +
-                    "Status      : " + getInvoiceStatus() + "\n" +
-                    "Payment Type: " + getPaymentType();
+        else if(deliveryFee == 0)
+        {
+            for(Food foods:getFoods()) {
+                super.totalPrice += foods.getPrice();
+            }
         }
     }
+
+    public String toString() {
+            String foodName = "";
+            for (Food food : getFoods()) {
+                foodName += food.getName() + ", ";
+            }
+            SimpleDateFormat format1 = new SimpleDateFormat("dd MMMM yyyy");
+            String date = format1.format(getDate().getTime());
+            return "\n================Invoice================" + "\n" +
+                    "ID: " + getId() + "\n" +
+                    "Name: " + foodName + "\n" +
+                    "Date: " + date + "\n" +
+                    "Customer: " + getCustomer().getName() + "\n" +
+                    "Delivery Fee: " + getDeliveryFee() + "\n" +
+                    "Total Price: " + totalPrice + "\n" +
+                    "Status: " + getInvoiceStatus() + "\n" +
+                    "Payment Type: " + getPaymentType() + "\n";
+    }
+
 }
